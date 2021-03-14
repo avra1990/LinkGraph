@@ -1,0 +1,74 @@
+.container {
+    display: grid;
+    grid-template-columns: 2.5fr 2.5fr 2.5fr;
+    grid-template-rows: 2.5fr 2.5fr 2.5fr;
+    grid-template-areas: 
+        "content_1 content_2 content_3";
+    height: 1500vh;
+    grid-gap: 0.5rem;
+    margin-top: 50px;
+}
+
+.images {
+    height: 300px;
+    width: 350px;
+}
+
+.inputImage {
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.addImage {
+    width: 100px;
+    height: 40px;
+    background-color: aqua;
+    border-radius: 5px;
+}
+
+.addImage:hover {
+    background-color: aquamarine;
+}
+
+.icons {
+    height: 50px;
+    width: 50px;
+}
+
+.deleteBtn {
+    height: 50px;
+    width: 150px;
+    background-color: aqua;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: inline;
+}
+
+.deleteBtn:hover {
+    background-color: aquamarine;
+}
+
+.content_1 {
+    grid-area: content_1;
+}
+
+.content_2 {
+    grid-area: content_2;
+}
+
+.content_3 {
+    grid-area: content_3;
+}
+
+@media only screen and (max-width: 550px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1.5fr 1.5fr 1.5fr;
+        grid-template-areas: 
+        "nav"
+        "content_1"
+        "content_2"
+        "content_3"
+    }
+}
