@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
-import Image from './Images';
+import Image from './Image';
 import '../css/Styles.css';
 
 class ImageList extends Component {
-    constructor(deleteImage, image) {
-        super(deleteImage, image)
-    }
-
-
-
     render() {
-        const allImages = image.map((image, id) => {
-            return (
-                <Image image={image} key={image.id} deleteImage={deleteImage}/>
-            )
-        })
+        const { images, deleteImage } = this.props;
         return (
-            {allImages}
+            <div className="imageWrapper">
+                {
+                    images.map((image, id) => {
+                        return (
+                            <Image image={image} key={image.id} deleteImage={deleteImage} />
+                        )
+                    })
+                }
+            </div>
         )
     }
 }

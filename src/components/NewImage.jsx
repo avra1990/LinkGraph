@@ -2,23 +2,37 @@ import React, { Component } from 'react';
 import '../css/Styles.css';
 
 class NewImage extends Component {
+    state = {
+        src: ''
+    }
 
-    addImage = () => {
-        this.props.addIntoImages(this.state)
+    addImage = (e) => {
+        e.preventDefault();
+        const { src } = this.state;
+        if (src) {
+            this.props.addIntoImages(`images/${src}`)
+        }
     }
 
     setImg = (e) => {
-        this.setState({
-            src: e.target.value
-        })
+        if (e.target.files.length > 0) {
+            this.setState({
+                src: e.target.files[0].name
+            })
+        }
+        else {
+            this.setState({
+                src: ''
+            })
+        }
     }
 
     render() {
         return (
-            <div className="container">
-                <input onChange={this.setImg} placeholder='new image' className='inputImage' className='form-control' />
-                <button onClick={this.addImage} className='addImage' className='form-control'>Add</button>
-            </div>
+            <form >
+                <input type="file" onChange={this.setImg} placeholder='new image' className='inputImage' className='form-control'></input>
+                <button type="submit" onClick={this.addImage} className='addImage' className='addImage'>Add Image</button>
+            </form>
         )
     }
 }

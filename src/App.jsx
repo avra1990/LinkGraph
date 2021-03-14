@@ -1,69 +1,86 @@
 import React, { Component } from 'react';
 import ImageList from './components/ImageList';
-import Images from './components/Images';
+import Image from './components/Image';
 import NewImage from './components/NewImage';
+import reactDom from 'react-dom';
+import { isCompositeComponentWithType } from 'react-dom/test-utils';
 
 class App extends Component {
-    state = [
-        image = [
+    state = {
+        images: [
             {
                 id: 1,
-                src: <img className='images' src={'images/h1.jpg'}/>
+                src: 'images/h1.jpg',
+                color: ''
             },
             {
                 id: 2,
-                src: <img className='images' src={'images/h2.jpg'}/>
+                src: 'images/h2.jpg',
+                color: ''
             },
             {
                 id: 3,
-                src: <img className='images' src={'images/h3.jpg'}/>
+                src: 'images/h3.jpg',
+                color: ''
             },
             {
                 id: 4,
-                src: <img className='images' src={'images/h4.jpg'}/>
+                src: 'images/h4.jpg',
+                color: ''
             },
             {
                 id: 5,
-                src: <img className='images' src={'images/h5.jpg'}/>
+                src: 'images/h5.jpg',
+                color: ''
             },
         ]
-    ]
-
-    componentDidMount() {
-        let data = [];
-        if(localStorage.data) {
-            data = JSON.stringify(localStorage.data)
-        } else {
-            this.setState({
-                image: data
-            })
-        }
     }
 
-    addIntoImages = (image) => {
+     componentDidMount() {
+         let data = [];
+         if(localStorage.data) {
+             data = JSON.stringify(localStorage.data)
+         } else {
+             this.setState({
+                 images: this.state.images
+             })
+         }
+     }
+
+   
+
+    addIntoImages = (src) => {
+        const newImage = { id: this.state.images.length + 1, src: src }
         this.setState({
-            image: [...this.state.image, image]
+            images: [...this.state.images, newImage]
         })
     }
 
     deleteImage = (id) => {
-        const copyImages = [...this.state.image];
-        copyImages.splice(id, 1);
+        const newList = this.state.images.filter(image => image.id !== id)
         this.setState({
-            image: copyImages
+            images: newList
         })
     }
 
-    like = () => {
+    like = (color) => {
+        let red = {style:{backgroundColor: red }}
+        let white ={style:{backgroundColor: white }}
 
+        const getBackground = () => {
+            return getBackground? red : white
+        }
+         
+        this.setState({
+            color: getBackground
+        })
     }
 
     render() {
         return (
             <>
-                <NewImage addIntoImages = {this.addIntoImages}/>
-                <Images like = {this.like}/>
-                <ImageList image={this.state.image} deleteImage = {this.deleteImage}/>
+                <NewImage addIntoImages = {this.addIntoImages} setImg={this.setImg} />
+                <ImageList images={this.state.images} deleteImage = {this.deleteImage}/>
             </>
         )
     }
